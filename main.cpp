@@ -2,6 +2,13 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <arpa/inet.h>
+#include <string.h>
+
+uint32_t min(uint32_t x, uint32_t y)
+{
+	if (x > y) return y;
+	else return x;
+}
 
 void usage() {
   printf("syntax: pcap_test <interface>\n");
@@ -101,8 +108,10 @@ int main(int argc, char* argv[]) {
 		printf("\n[-] No Data");
 	else
 	{
+		char data[40] = { 0 };
+		strncpy(data, (const char*)packet + hlen, min(32, header->caplen - hlen));
 		printf("\n<Packet Data>");
-		printf("\n%s", packet + 54);
+		printf("\n%s", data);
 	}
   }
 
