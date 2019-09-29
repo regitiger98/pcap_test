@@ -51,8 +51,8 @@ int main(int argc, char* argv[]) {
 		struct pcap_pkthdr* header;
 		const u_char* packet;
 		int res = pcap_next_ex(handle, &header, &packet);
-    	if (res == 0) continue;
-    	if (res == -1 || res == -2) break;
+		if (res == 0) continue;
+		if (res == -1 || res == -2) break;
 
 		printf("\n\n[+] %u bytes captured", header->caplen);
 	
